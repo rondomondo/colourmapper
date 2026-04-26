@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Conventional Commits enforcer
+#
+# Format: <type>(<scope>): <description>
+#
+# Common types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+# A '!' suffix (e.g. feat!:) signals a breaking change.
+#
+# Learn more: https://www.conventionalcommits.org
+#
+MSG=$(cat "$1")
+PATTERN="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?(!)?: .{1,}"
+
+if ! echo "$MSG" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "  x Invalid commit message format!"
+  echo ""
+  echo "  Expected: <type>(<scope>): <description>"
+  echo "  Example:  feat!: drop support for Node 16"
+  echo ""
+  echo "  Types: feat fix docs style refactor perf test build ci chore revert"
+  echo ""
+  exit 1
+fi
