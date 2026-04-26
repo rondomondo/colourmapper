@@ -133,7 +133,6 @@ yarn-error.log*
 
 # -- Data & fixtures -----------------------------------------------------------
 *.arrow
-*.csv
 *.feather
 *.parquet
 fixtures/
